@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 // Función para generar las conversiones
 const generateConversionTable = (start: number, end: number, step: number) => {
   let table = [];
-  for (let i = start; i <= end; i += step) {
+  let count = 0;
+  const maxRows = 500;
+
+  for (let i = start; i <= end && count < maxRows; i += step) {
     const fraction = i;
     const millimeters = fraction * 25.4;
     const feet = fraction / 12;
@@ -13,7 +16,9 @@ const generateConversionTable = (start: number, end: number, step: number) => {
       millimeters,
       feet,
     });
+    count++;
   }
+
   return table;
 };
 
@@ -51,8 +56,16 @@ function App() {
   const [end, setEnd] = useState<number>(64); // Valor de fin
   const [step, setStep] = useState<number>(0.1); // Valor del incremento, por defecto 0.1
 
-  // Generar la tabla de conversiones dinámicas
-  const conversionTable = generateConversionTable(start, end, step);
+  // Estado para la tabla de conversiones (tabla dinámica)
+  const [conversionTable, setConversionTable] = useState<any[]>([]);
+
+  // Limitar el número de filas de la tabla para evitar el congelamiento
+  useEffect(() => {
+    if (step > 0) {
+      const table = generateConversionTable(start, end, step);
+      setConversionTable(table);
+    }
+  }, [start, end, step]);
 
   return (
     <div>
@@ -70,7 +83,7 @@ function App() {
           value={unit}
           onChange={(e) =>
             setUnit(e.target.value as "inches" | "millimeters" | "feet")
-          } // Aseguramos que el valor es válido
+          }
         >
           <option value="inches">Pulgadas</option>
           <option value="millimeters">Milímetros</option>
@@ -105,6 +118,8 @@ function App() {
             id="start"
             type="number"
             step="any" // Permite números decimales
+            inputMode="decimal"
+            pattern="[0-9]*"
             value={start}
             onChange={(e) => setStart(Number(e.target.value))}
             placeholder="Inicio"
@@ -116,6 +131,8 @@ function App() {
             id="end"
             type="number"
             step="any" // Permite números decimales
+            inputMode="decimal"
+            pattern="[0-9]*"
             value={end}
             onChange={(e) => setEnd(Number(e.target.value))}
             placeholder="Fin"
@@ -127,6 +144,8 @@ function App() {
             id="step"
             type="number"
             step="any" // Permite números decimales
+            inputMode="decimal"
+            pattern="[0-9]*"
             value={step}
             onChange={(e) => setStep(Number(e.target.value))}
             placeholder="Incremento"
