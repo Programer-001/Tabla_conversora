@@ -89,9 +89,9 @@ function App() {
         </thead>
         <tbody>
           <tr>
-            <td>{inches.toFixed(2)}</td>
-            <td>{millimeters.toFixed(2)}</td>
-            <td>{feet.toFixed(2)}</td>
+            <td>{(inches ?? 0).toFixed(2)}</td>
+            <td>{(millimeters ?? 0).toFixed(2)}</td>
+            <td>{(feet ?? 0).toFixed(2)}</td>
           </tr>
         </tbody>
       </table>
