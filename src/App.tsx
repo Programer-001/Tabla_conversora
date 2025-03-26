@@ -52,9 +52,9 @@ function App() {
   const { inches, millimeters, feet } = convertValue(value, unit);
 
   // Estado para la tabla dinámica (inicio, fin, incremento)
-  const [start, setStart] = useState<number>(1); // Valor de inicio
-  const [end, setEnd] = useState<number>(64); // Valor de fin
-  const [step, setStep] = useState<number>(0.1); // Valor del incremento, por defecto 0.1
+  const [start, setStart] = useState<number>(0); // Valor de inicio
+  const [end, setEnd] = useState<number>(1); // Valor de fin
+  const [step, setStep] = useState<number>(0.015625); // Valor del incremento, por defecto 0.1
 
   // Estado para la tabla de conversiones (tabla dinámica)
   const [conversionTable, setConversionTable] = useState<any[]>([]);
