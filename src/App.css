@@ -18,7 +18,7 @@ table td {
 }
 
 table tbody tr:hover {
-  background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+  background-color: #f37908; /* Color de fondo al pasar el mouse */
   cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
 }
 
