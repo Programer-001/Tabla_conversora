@@ -110,7 +110,7 @@ function App() {
       </table>
 
       {/* Tabla dinámica de conversiones (1/64 de pulgada a 1) */}
-      <h2>Tabla de Conversiones (1/64 hasta 1 pulgada)</h2>
+      <h2>Tabla de Conversiones</h2>
       <div className="card">
         <div>
           <label htmlFor="start">Desde (Pulgadas): </label>
