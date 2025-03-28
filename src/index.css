@@ -5,12 +5,36 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+
+  /* Gradiente de acero inoxidable */
+  background: linear-gradient(
+    135deg,
+    #606060,
+    #8d8d8d,
+    #b0b0b0,
+    #c2c2c2
+  ); /* Colores metálicos */
+  background-size: 200% 200%; /* Hace que el gradiente se vea más dinámico */
+  background-position: 0 0, 100% 100%; /* Mueve el gradiente para dar un efecto de brillo */
+  animation: steelBackground 5s linear infinite; /* Animación para simular un acabado metálico en movimiento */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animación del gradiente para simular el acabado del acero */
+@keyframes steelBackground {
+  0% {
+    background-position: 0 0, 100% 100%;
+  }
+  50% {
+    background-position: 100% 0, 0 100%;
+  }
+  100% {
+    background-position: 0 0, 100% 100%;
+  }
 }
 
 a {

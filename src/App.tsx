@@ -107,7 +107,7 @@ function App() {
 
   return (
     <div>
-      <h1>Conversor de Unidades y Tabla de Conversiones</h1>
+      <h1>Convertidor de unidades</h1>
 
       {/* Conversor de unidades */}
       <div className="card">
