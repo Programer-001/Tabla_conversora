@@ -114,6 +114,8 @@ function App() {
         <div className="Entradas">
           <input
             type="number"
+            inputMode="decimal"
+            pattern="[0-9]*"
             onChange={(e) => setValue(Number(e.target.value))}
             placeholder="Ingrese valor"
           />
