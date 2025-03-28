@@ -113,7 +113,6 @@ function App() {
       <div className="card">
         <input
           type="number"
-          value={value}
           onChange={(e) => setValue(Number(e.target.value))}
           placeholder="Ingrese valor"
         />
@@ -160,7 +159,6 @@ function App() {
             step="any" // Permite números decimales
             inputMode="decimal"
             pattern="[0-9]*"
-            value={start}
             onChange={(e) => setStart(Number(e.target.value))}
             placeholder="Inicio"
           />
@@ -173,7 +171,6 @@ function App() {
             step="any" // Permite números decimales
             inputMode="decimal"
             pattern="[0-9]*"
-            value={end}
             onChange={(e) => setEnd(Number(e.target.value))}
             placeholder="Fin"
           />
@@ -186,7 +183,6 @@ function App() {
             step="any" // Permite números decimales
             inputMode="decimal"
             pattern="[0-9]*"
-            value={step}
             onChange={(e) => setStep(Number(e.target.value))}
             placeholder="Incremento"
           />
