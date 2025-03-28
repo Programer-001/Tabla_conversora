@@ -74,11 +74,17 @@ table tbody tr:hover {
   .card {
     display: block; /* Cambiar a columna en pantallas pequeñas */
   }
+  .Entradas {
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+  }
 }
 
 /* Media query para pantallas grandes (tabletas y escritorios) */
 @media (min-width: 769px) {
   .card {
     display: flex; /* Mantener la fila en pantallas grandes */
+  }
+  .Entradas {
+    flex-direction: row; /* Mantener fila en pantallas grandes */
   }
 }
