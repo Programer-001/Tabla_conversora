@@ -1,6 +1,34 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
+//devuelve fracciones
+const toFraction = (decimal: number): string => {
+  if (decimal === 0) return "0";
+
+  const tolerance = 1.0e-6;
+  let numerator = decimal;
+  let denominator = 1;
+
+  while (Math.abs(numerator - Math.round(numerator)) > tolerance) {
+    numerator *= 10;
+    denominator *= 10;
+  }
+
+  numerator = Math.round(numerator);
+
+  const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b));
+  let divisor = gcd(numerator, denominator);
+
+  numerator /= divisor;
+  denominator /= divisor;
+
+  let intPart = Math.floor(numerator / denominator);
+  let fracPart = numerator % denominator;
+
+  if (fracPart === 0) return `${intPart}`;
+  if (intPart === 0) return `${fracPart}/${denominator}`;
+  return `${intPart} ${fracPart}/${denominator}`;
+};
 // Función para generar las conversiones
 const generateConversionTable = (start: number, end: number, step: number) => {
   let table = [];
@@ -11,8 +39,10 @@ const generateConversionTable = (start: number, end: number, step: number) => {
     const fraction = i;
     const millimeters = fraction * 25.4;
     const feet = fraction / 12;
+    const fractionString = toFraction(fraction);
     table.push({
       fraction,
+      fractionString,
       millimeters,
       feet,
     });
@@ -46,10 +76,18 @@ function App() {
       millimeters = value * 304.8;
       feet = value;
     }
-    return { inches, millimeters, feet };
+    return {
+      inches,
+      inchesFraction: toFraction(inches ?? 0),
+      millimeters,
+      feet,
+    };
   };
 
-  const { inches, millimeters, feet } = convertValue(value, unit);
+  const { inches, inchesFraction, millimeters, feet } = convertValue(
+    value,
+    unit
+  );
 
   // Estado para la tabla dinámica (inicio, fin, incremento)
   const [start, setStart] = useState<number>(0); // Valor de inicio
@@ -96,6 +134,7 @@ function App() {
         <thead>
           <tr>
             <th>Pulgadas</th>
+            <th>Fracción</th>
             <th>Milímetros</th>
             <th>Pies</th>
           </tr>
@@ -103,6 +142,7 @@ function App() {
         <tbody>
           <tr>
             <td>{(inches ?? 0).toFixed(2)}</td>
+            <td>{inchesFraction}</td>
             <td>{(millimeters ?? 0).toFixed(2)}</td>
             <td>{(feet ?? 0).toFixed(2)}</td>
           </tr>
@@ -156,6 +196,7 @@ function App() {
       <table>
         <thead>
           <tr>
+            <th>Decimal en Pulgadas</th>
             <th>Fracción en Pulgadas</th>
             <th>Milímetros</th>
             <th>Pies</th>
@@ -165,6 +206,7 @@ function App() {
           {conversionTable.map((row, index) => (
             <tr key={index}>
               <td>{row.fraction.toFixed(3)}</td>
+              <td>{row.fractionString}</td>
               <td>{row.millimeters.toFixed(3)}</td>
               <td>{row.feet.toFixed(5)}</td>
             </tr>
