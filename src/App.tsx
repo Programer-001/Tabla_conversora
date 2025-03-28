@@ -111,21 +111,23 @@ function App() {
 
       {/* Conversor de unidades */}
       <div className="card">
-        <input
-          type="number"
-          onChange={(e) => setValue(Number(e.target.value))}
-          placeholder="Ingrese valor"
-        />
-        <select
-          value={unit}
-          onChange={(e) =>
-            setUnit(e.target.value as "inches" | "millimeters" | "feet")
-          }
-        >
-          <option value="inches">Pulgadas</option>
-          <option value="millimeters">Milímetros</option>
-          <option value="feet">Pies</option>
-        </select>
+        <div className="Entradas">
+          <input
+            type="number"
+            onChange={(e) => setValue(Number(e.target.value))}
+            placeholder="Ingrese valor"
+          />
+          <select
+            value={unit}
+            onChange={(e) =>
+              setUnit(e.target.value as "inches" | "millimeters" | "feet")
+            }
+          >
+            <option value="inches">Pulgadas</option>
+            <option value="millimeters">Milímetros</option>
+            <option value="feet">Pies</option>
+          </select>
+        </div>
       </div>
 
       {/* Tabla de conversiones del conversor */}
@@ -151,7 +153,7 @@ function App() {
       {/* Tabla dinámica de conversiones (1/64 de pulgada a 1) */}
       <h2>Tabla de Conversiones</h2>
       <div className="card">
-        <div>
+        <div className="Entradas">
           <label htmlFor="start">Desde (Pulgadas): </label>
           <input
             id="start"
@@ -163,7 +165,7 @@ function App() {
             placeholder="Inicio"
           />
         </div>
-        <div>
+        <div className="Entradas">
           <label htmlFor="end">Hasta (Pulgadas): </label>
           <input
             id="end"
@@ -175,7 +177,7 @@ function App() {
             placeholder="Fin"
           />
         </div>
-        <div>
+        <div className="Entradas">
           <label htmlFor="step">Incremento (Pulgadas): </label>
           <input
             id="step"

@@ -32,8 +32,53 @@ table tbody tr:hover {
 
 .card {
   padding: 2em;
+  display: flex; /* Cambia el contenedor a un contenedor flexible */
+  gap: 0.2em; /* Opcional: agrega espacio entre los inputs */
+}
+.Entradas {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten cuando el espacio es pequeño */
+  gap: 0.5em; /* Espacio entre el label y el input */
+}
+
+.Entradas label {
+  font-size: 1rem; /* Tamaño del texto del label */
+  font-weight: 500; /* Peso del texto del label */
+}
+
+.Entradas input {
+  padding: 0.5em; /* Espacio dentro del input */
+  font-size: 1rem; /* Tamaño del texto del input */
+  border: 1px solid #ccc; /* Borde del input */
+  border-radius: 4px; /* Bordes redondeados del input */
+}
+.Entradas select {
+  padding: 0.5em; /* Espacio dentro del input */
+  font-size: 1rem; /* Tamaño del texto del input */
+  border: 1px solid #ccc; /* Borde del input */
+  border-radius: 4px; /* Bordes redondeados del input */
+}
+
+.Entradas input,
+.Entradas select {
+  flex: 1; /* Hace que ambos elementos ocupen el mismo espacio */
+  padding: 0.5em;
+  font-size: 1rem;
 }
 
 .read-the-docs {
   color: #888;
+}
+/* Media query para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .card {
+    display: block; /* Cambiar a columna en pantallas pequeñas */
+  }
+}
+
+/* Media query para pantallas grandes (tabletas y escritorios) */
+@media (min-width: 769px) {
+  .card {
+    display: flex; /* Mantener la fila en pantallas grandes */
+  }
 }
